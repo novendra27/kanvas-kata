@@ -1,7 +1,7 @@
 <?php
 
 class Controller{
-    public function __construct() {
-        echo 'Controller is loaded';
+    public function view($view, $data = []) {
+        require_once '../app/views/' . $view . '.php';
     }
 }
