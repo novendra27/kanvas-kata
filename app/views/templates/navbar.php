@@ -18,7 +18,7 @@
                         <img src="assets/images/icon.png" alt="" height="38">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo.png" alt="" height="68s">
+                        <img src="assets/images/logo.png" alt="" height="68">
                     </span>
                 </a>
             </div>
