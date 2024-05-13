@@ -1,29 +1,4 @@
 <!doctype html>
-<html lang="en">
-
-<head>
-
-
-    <meta charset="utf-8" />
-    <title>Halaman <?= $data['judul'] ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= BASEURL ?>/assets/images/favicon.ico">
-
-    <!-- Bootstrap Css -->
-    <link href="<?= BASEURL ?>/assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="<?= BASEURL ?>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="<?= BASEURL ?>/assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
-
-</head>
-
-
-<body class="authentication-bg bg-primary">
     <div class="home-center pt-4">
         <div class="home-desc-center">
 
@@ -49,21 +24,21 @@
                                     </div>
 
 
-                                    <form class="form-horizontal mt-2 pt-2" action="index.html">
+                                    <form class="form-horizontal mt-2 pt-2" action="<?= BASEURL ?>/auth/tambahData" method="post">
 
                                         <div class="mb-3">
-                                            <label for="useremail">Email</label>
-                                            <input type="email" class="form-control" id="useremail" placeholder="Masukkan email">
+                                            <label for="name">Username</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan username">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Masukkan username">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Masukkan password">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email">
                                         </div>
 
                                         <div class="mt-4">
@@ -90,16 +65,3 @@
         </div>
         <!-- End Log In page -->
     </div>
-
-    <!-- JAVASCRIPT -->
-    <script src="<?= BASEURL ?>/assets/libs/jquery/jquery.min.js"></script>
-    <script src="<?= BASEURL ?>/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= BASEURL ?>/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="<?= BASEURL ?>/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="<?= BASEURL ?>/assets/libs/node-waves/waves.min.js"></script>
-
-    <script src="<?= BASEURL ?>/assets/js/app.js"></script>
-
-</body>
-
-</html>
