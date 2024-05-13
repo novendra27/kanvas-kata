@@ -6,7 +6,7 @@
 
                 <div class="home-btn"><a href="/" class="text-white router-link-active"><i class="fas fa-home h2"></i></a></div>
 
-
+                <?php Flasher::flash(); ?>
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card">

@@ -23,7 +23,12 @@ class Auth extends Controller
     public function tambahData()
     {
         if ($this->model('User_model')->tambahDataUser($_POST) > 0) {
-            header('Location: ' . BASEURL . '/auth');
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . '/auth/register');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: ' . BASEURL . '/auth/register');
             exit;
         }
     }
