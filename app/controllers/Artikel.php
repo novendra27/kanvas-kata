@@ -1,24 +1,24 @@
 <?php
 
-class Home extends Controller
+class Artikel extends Controller
 {
     public function index()
     {
-        $data['judul'] = 'Home';
+        $data['judul'] = 'Penulis - Beranda';
         $data['user'] = $this->model('User_model')->getUserById('1');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
-        $this->view('home/index');
+        $this->view('artikel/index', $data);
         $this->view('templates/footer');
     }
-
-    public function detail($id)
+    
+    public function tambahArtikel()
     {
-        $data['judul'] = 'Home';
+        $data['judul'] = 'Penulis - Tambah Artikel';
         $data['user'] = $this->model('User_model')->getUserById('1');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
-        $this->view('home/index');
+        $this->view('artikel/tambah_artikel', $data);
         $this->view('templates/footer');
     }
 }

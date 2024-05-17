@@ -6,19 +6,19 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="<?= BASEURL ?>/assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="20">
+                        <img src="<?= BASEURL ?>/assets/images/logo-dark.png" alt="" height="20">
                     </span>
                 </a>
 
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/icon.png" alt="" height="38">
+                        <img src="<?= BASEURL ?>/assets/images/icon.png" alt="" height="38">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo.png" alt="" height="68">
+                        <img src="<?= BASEURL ?>/assets/images/logo.png" alt="" height="68">
                     </span>
                 </a>
             </div>
@@ -81,7 +81,7 @@
                         </a>
                         <a href="" class="text-reset notification-item">
                             <div class="media">
-                                <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                <img src="<?= BASEURL ?>/assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">James Lemire</h6>
                                     <div class="font-size-13 text-muted">
@@ -110,7 +110,7 @@
 
                         <a href="" class="text-reset notification-item">
                             <div class="media">
-                                <img src="assets/images/users/avatar-4.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                <img src="<?= BASEURL ?>/assets/images/users/avatar-4.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">Salena Layfield</h6>
                                     <div class="font-size-13 text-muted">
@@ -131,10 +131,8 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-7.jpg" alt="Header Avatar">
-                    <?php foreach ($data['user'] as $user) : ?>
-                        <span class="d-none d-xl-inline-block ms-1"><?= $user['name']; ?></span>
-                    <?php endforeach; ?>
+                    <img class="rounded-circle header-profile-user" src="<?= BASEURL ?>/assets/images/users/avatar-7.jpg" alt="Header Avatar">
+                        <span class="d-none d-xl-inline-block ms-1"><?= $data['user']['name']; ?></span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
@@ -159,13 +157,11 @@
         <div class="user-sidebar text-center">
             <div class="dropdown">
                 <div class="user-img">
-                    <img src="assets/images/users/avatar-7.jpg" alt="" class="rounded-circle">
+                    <img src="<?= BASEURL ?>/assets/images/users/avatar-7.jpg" alt="" class="rounded-circle">
                     <span class="avatar-online bg-success"></span>
                 </div>
                 <div class="user-info">
-                    <?php foreach ($data['user'] as $user) : ?>
-                        <h5 class="mt-3 font-size-16 text-white"><?= $user['name']; ?></h5>
-                    <?php endforeach; ?>
+                        <h5 class="mt-3 font-size-16 text-white"><?= $data['user']['name']; ?></h5>
                     <span class="font-size-13 text-white-50">Role</span>
                 </div>
             </div>
@@ -182,25 +178,18 @@
                 <li>
                     <a href="" class="waves-effect">
                         <i class="dripicons-home"></i><span class="badge rounded-pill bg-info float-end">3</span>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="" class="waves-effect">
-                        <i class="dripicons-home"></i><span class="badge rounded-pill bg-info float-end">3</span>
-                        <span>Dashboard2</span>
+                        <span>Beranda</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-lock-open-plus-outline"></i>
-                        <span>Pin Register</span>
+                        <i class="mdi mdi-account-edit-outline"></i>
+                        <span>Penulis</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">Transfer Pin</a></li>
-                        <li><a href="">Riwayat Pin</a></li>
+                        <li><a href="">Beranda</a></li>
+                        <li><a href="">Tambah Artikel</a></li>
                     </ul>
                 </li>
 
