@@ -27,7 +27,7 @@ class Pengguna_model
     {
         $id_pengguna = $this->getMaxUserId() + 1;
 
-        $query = "INSERT INTO tb_pengguna (id_pengguna, nama, email, password, peran)
+        $query = "INSERT INTO $this->table (id_pengguna, nama, email, password, peran)
                     VALUES
                   (:id_pengguna, :nama, :email, :password, :peran)";
 
@@ -48,5 +48,20 @@ class Pengguna_model
         $this->db->query('SELECT MAX(id_pengguna) AS max_id FROM ' . $this->table);
         $result = $this->db->single();
         return (int) $result['max_id'];
+    }
+
+    public function login($data)
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE nama =:nama AND password = :password';
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('password', $data['password']);
+        $user = $this->db->single();
+
+        if ($user) {
+            return $user;
+        }else{
+            return false;
+        }
     }
 }

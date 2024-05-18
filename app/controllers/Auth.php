@@ -30,4 +30,21 @@ class Auth extends Controller
             exit;
         }
     }
+
+    public function login()
+    {
+        $user = $this->model('Pengguna_model')->login($_POST);
+        if ($user) {
+            $_SESSION['id_pengguna'] = $user['id_pengguna'];
+            $_SESSION['nama'] = $user['nama'];
+            $_SESSION['peran'] = $user['peran'];
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        } else {
+            echo 'gagal';
+            Flasher::setFlash('gagal', 'login', 'danger');
+            header('Location: ' . BASEURL . '/auth');
+            exit;
+        }
+    }
 }

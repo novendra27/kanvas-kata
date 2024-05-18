@@ -6,7 +6,7 @@
 
                 <div class="home-btn"><a href="/" class="text-white router-link-active"><i class="fas fa-home h2"></i></a></div>
 
-
+                <?php Flasher::flash(); ?>
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card">
@@ -24,16 +24,16 @@
                                     </div>
 
 
-                                    <form class="form-horizontal mt-2 pt-2" action="index.html">
+                                    <form class="form-horizontal mt-2 pt-2" action="<?= BASEURL ?>/auth/login" method="post">
 
                                         <div class="mb-3">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Masukkan username">
+                                            <label for="nama">Username</label>
+                                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan username">
                                         </div>
 
                                         <div class="mb-4">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Masukkan password">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                         </div>
 
                                         <div class="mt-4">
