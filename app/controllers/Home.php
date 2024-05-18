@@ -5,7 +5,7 @@ class Home extends Controller
     public function index()
     {
         $data['judul'] = 'Home';
-        $data['user'] = $this->model('User_model')->getUserById('1');
+        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('home/index');
@@ -15,7 +15,7 @@ class Home extends Controller
     public function detail($id)
     {
         $data['judul'] = 'Home';
-        $data['user'] = $this->model('User_model')->getUserById('1');
+        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('home/index');

@@ -132,7 +132,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="<?= BASEURL ?>/assets/images/users/avatar-7.jpg" alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ms-1"><?= $data['user']['name']; ?></span>
+                        <span class="d-none d-xl-inline-block ms-1"><?= $data['pengguna']['nama']; ?></span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
@@ -161,7 +161,7 @@
                     <span class="avatar-online bg-success"></span>
                 </div>
                 <div class="user-info">
-                        <h5 class="mt-3 font-size-16 text-white"><?= $data['user']['name']; ?></h5>
+                        <h5 class="mt-3 font-size-16 text-white"><?= $data['pengguna']['nama']; ?></h5>
                     <span class="font-size-13 text-white-50">Role</span>
                 </div>
             </div>

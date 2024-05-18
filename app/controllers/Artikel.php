@@ -5,7 +5,7 @@ class Artikel extends Controller
     public function index()
     {
         $data['judul'] = 'Penulis - Beranda';
-        $data['user'] = $this->model('User_model')->getUserById('1');
+        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('artikel/index', $data);
@@ -15,7 +15,7 @@ class Artikel extends Controller
     public function tambahArtikel()
     {
         $data['judul'] = 'Penulis - Tambah Artikel';
-        $data['user'] = $this->model('User_model')->getUserById('1');
+        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('artikel/tambah_artikel', $data);
