@@ -5,20 +5,113 @@ class Home extends Controller
     public function index()
     {
         $data['judul'] = 'Home';
-        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
+        $data['artikel'] = $this->model('Artikel_model')->getAllArtikel();
+        $data = $this->formatTanggal($data);
+        $data['artikelById'] = $this->model('Artikel_model')->getArtikelById('40001');
+        $data = $this->formatTanggalById($data);
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
-        $this->view('home/index');
+        $this->view('home/index', $data);
         $this->view('templates/footer');
     }
 
-    public function detail($id)
+    public function formatTanggal($data)
     {
-        $data['judul'] = 'Home';
-        $data['pengguna'] = $this->model('Pengguna_model')->getUserById('10001');
-        $this->view('templates/header', $data);
-        $this->view('templates/navbar', $data);
-        $this->view('home/index');
-        $this->view('templates/footer');
+        // Misalkan kolom datetime di tabel Anda bernama 'tanggal'
+        foreach ($data['artikel'] as &$artikel) {
+            $datetime = $artikel['tanggal'];
+
+            // Array untuk terjemahan hari dan bulan
+            $hari_indonesia = [
+                'Sunday' => 'Minggu',
+                'Monday' => 'Senin',
+                'Tuesday' => 'Selasa',
+                'Wednesday' => 'Rabu',
+                'Thursday' => 'Kamis',
+                'Friday' => 'Jumat',
+                'Saturday' => 'Sabtu'
+            ];
+
+            $bulan_indonesia = [
+                'January' => 'Januari',
+                'February' => 'Februari',
+                'March' => 'Maret',
+                'April' => 'April',
+                'May' => 'Mei',
+                'June' => 'Juni',
+                'July' => 'Juli',
+                'August' => 'Agustus',
+                'September' => 'September',
+                'October' => 'Oktober',
+                'November' => 'November',
+                'December' => 'Desember'
+            ];
+
+            // Format datetime ke format yang diinginkan
+            $formatted_datetime = date('H:i:s, l, d F Y', strtotime($datetime));
+
+            // Pisahkan bagian-bagian dari datetime
+            $datetime_parts = explode(', ', $formatted_datetime);
+
+            // Terjemahkan hari dan bulan
+            $time = $datetime_parts[0];
+            $day = $hari_indonesia[$datetime_parts[1]];
+            list($date, $month, $year) = explode(' ', $datetime_parts[2]);
+            $month = $bulan_indonesia[$month];
+
+            // Format akhir dalam bahasa Indonesia
+            $formatted_date = "$time WIB, $day $date $month $year";
+            $artikel['tanggal'] = $formatted_date;
+        }
+        return $data;
+    }
+
+    public function formatTanggalById($data)
+    {
+        // Misalkan kolom datetime di tabel Anda bernama 'tanggal'
+        $datetime = $data['artikelById']['tanggal'];
+
+        // Array untuk terjemahan hari dan bulan
+        $hari_indonesia = [
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
+        ];
+
+        $bulan_indonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        // Format datetime ke format yang diinginkan
+        $formatted_datetime = date('H:i:s, l, d F Y', strtotime($datetime));
+
+        // Pisahkan bagian-bagian dari datetime
+        $datetime_parts = explode(', ', $formatted_datetime);
+
+        // Terjemahkan hari dan bulan
+        $time = $datetime_parts[0];
+        $day = $hari_indonesia[$datetime_parts[1]];
+        list($date, $month, $year) = explode(' ', $datetime_parts[2]);
+        $month = $bulan_indonesia[$month];
+
+        // Format akhir dalam bahasa Indonesia
+        $formatted_date = "$time WIB, $day $date $month $year";
+        $data['artikelById']['tanggal'] = $formatted_date;
+        return $data;
     }
 }
