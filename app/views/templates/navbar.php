@@ -170,7 +170,7 @@
                             <span class="font-size-13 text-white-50"><?= $_SESSION['peran']; ?></span>
                         <?php else: ?>
                             <h5 class="mt-3 font-size-16 text-white">Pengguna</h5>
-                            <span class="font-size-13 text-white-50">tamu</span>
+                            <span class="font-size-13 text-white-50">Tamu</span>
                         <?php endif; ?>
                 </div>
             </div>

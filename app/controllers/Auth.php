@@ -41,13 +41,12 @@ class Auth extends Controller
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
-            echo 'gagal';
             Flasher::setFlash('gagal', 'login', 'danger');
             header('Location: ' . BASEURL . '/auth');
             exit;
         }
     }
-    
+
     public function logout()
     {
         session_destroy();
