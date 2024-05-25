@@ -36,7 +36,7 @@ class Pengguna_model
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('password', $data['password']);
-        $this->db->bind('peran', '1');
+        $this->db->bind('peran', 'Penulis');
 
         $this->db->execute();
 

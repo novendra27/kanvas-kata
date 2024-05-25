@@ -132,14 +132,18 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="<?= BASEURL ?>/assets/images/users/avatar-7.jpg" alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ms-1"><?= $data['pengguna']['nama']; ?></span>
+                        <?php if(isset($_SESSION['nama'])): ?>
+                            <span class="d-none d-xl-inline-block ms-1"><?= $_SESSION['nama']; ?></span>
+                        <?php else: ?>
+                            <span class="d-none d-xl-inline-block ms-1">Pengguna tamu</span>
+                        <?php endif; ?>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <a class="dropdown-item" href=""><i class="mdi mdi-account-circle-outline font-size-16 align-middle me-1"></i> Profil</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power font-size-16 align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="<?= BASEURL ?>/auth/logout"><i class="mdi mdi-power font-size-16 align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
 
@@ -161,8 +165,13 @@
                     <span class="avatar-online bg-success"></span>
                 </div>
                 <div class="user-info">
-                        <h5 class="mt-3 font-size-16 text-white"><?= $data['pengguna']['nama']; ?></h5>
-                    <span class="font-size-13 text-white-50">Role</span>
+                        <?php if(isset($_SESSION['nama']) && isset($_SESSION['peran'])): ?>
+                            <h5 class="mt-3 font-size-16 text-white"><?= $_SESSION['nama']; ?></h5>
+                            <span class="font-size-13 text-white-50"><?= $_SESSION['peran']; ?></span>
+                        <?php else: ?>
+                            <h5 class="mt-3 font-size-16 text-white">Pengguna</h5>
+                            <span class="font-size-13 text-white-50">tamu</span>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -176,7 +185,7 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="" class="waves-effect">
+                    <a href="<?= BASEURL ?>/home" class="waves-effect">
                         <i class="dripicons-home"></i><span class="badge rounded-pill bg-info float-end">3</span>
                         <span>Beranda</span>
                     </a>
@@ -188,8 +197,8 @@
                         <span>Penulis</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">Beranda</a></li>
-                        <li><a href="">Tambah Artikel</a></li>
+                        <li><a href="<?= BASEURL ?>/artikel">Beranda</a></li>
+                        <li><a href="<?= BASEURL ?>/artikel/tambahArtikel">Tambah Artikel</a></li>
                     </ul>
                 </li>
 

@@ -16,8 +16,8 @@
                                     <h4>KANVAS KATA</h4>
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Kanvas Kata</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Home Page</a></li>
-                                        <li class="breadcrumb-item active">Home Page</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Beranda</a></li>
+                                        <li class="breadcrumb-item active">Beranda</li>
                                     </ol>
                                 </div>
                             </div>
