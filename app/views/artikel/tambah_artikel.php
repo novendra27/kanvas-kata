@@ -26,14 +26,14 @@
                 </div>
                 <!-- end page title -->
 
-
                 <div class="container-fluid">
 
                     <div class="page-content-wrapper">
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate action="<?= BASEURL ?>/artikel/tambahDataArtikel" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card border-5 rounded-3">
+                                        <?php Flasher::flash(); ?>
                                         <div class="card-body">
                                             <div class="row pb-3 mb-3 border-bottom rounded">
                                                 <div class="col-xl-6">
@@ -48,8 +48,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 mb-2 pt-1">
-                                                    <label for="validationCustom01" class="form-label">Judul</label>
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Masukkan Judul Artikel" value="" required>
+                                                    <label for="judulArtikel" class="form-label">Judul</label>
+                                                    <input type="text" class="form-control" name="judulArtikel" id="judulArtikel" placeholder="Masukkan Judul Artikel" value="" required>
                                                     <div class="valid-feedback">
                                                         Inputan sudah benar!
                                                     </div>
@@ -58,10 +58,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2 pt-1">
-                                                    <label for="validationCustom03" class="form-label">Kategori</label>
-                                                    <select class="form-select" id="validationCustom03" required>
-                                                        <option selected disabled value="">Choose...</option>
-                                                        <option>...</option>
+                                                    <label for="kategoriArtikel" class="form-label">Kategori</label>
+                                                    <select class="form-select" name="kategoriArtikel" id="kategoriArtikel" required>
+                                                        <?php
+                                                        foreach ($data['kategori'] as $kategori) {
+                                                        ?>
+                                                            <option><?= $kategori['nama_kategori'] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </select>
                                                     <div class="valid-feedback">
                                                         Inputan sudah benar!
@@ -73,9 +78,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 mb-2 pt-1">
-                                                    <label for="validationCustom01" class="form-label">Gambar</label>
+                                                    <label for="gambarArtikel" class="form-label">Gambar</label>
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control" id="customFile">
+                                                        <input type="file" class="form-control" id="gambarArtikel" name="gambarArtikel" required>
                                                     </div>
                                                     <div class="valid-feedback">
                                                         Inputan sudah benar!
@@ -87,8 +92,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 mb-2 pt-1">
-                                                    <label for="ckeditorform" class="form-label">Konten</label>
-                                                    <textarea class="form-control" id="ckeditorform" placeholder="Masukkan Konten Artikel" required rows="5"></textarea>
+                                                    <label for="kontenArtikel" class="form-label">Konten</label>
+                                                    <textarea class="form-control" id="kontenArtikel" placeholder="Masukkan Konten Artikel" name="kontenArtikel" required rows="5"></textarea>
                                                     <div class="valid-feedback">
                                                         Inputan sudah benar!
                                                     </div>
@@ -99,7 +104,7 @@
                                             </div>
                                             <h5 class="border-bottom rounded pb-3 mb-3"></h5>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-primary bg-opacity-30" type="submit">Submit form</button>
+                                                <button class="btn btn-primary bg-opacity-30" type="submit">Tambah Artikel</button>
                                             </div>
                                         </div>
                                     </div>

@@ -60,7 +60,7 @@ class Pengguna_model
 
         if ($user) {
             return $user;
-        }else{
+        } else {
             return false;
         }
     }
