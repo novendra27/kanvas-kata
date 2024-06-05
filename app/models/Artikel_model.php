@@ -35,7 +35,7 @@ class Artikel_model
         $id_artikel = $this->getMaxArtikelId() + 1;
         $timestamp = time();
 
-        $query = "INSERT INTO tb_artikel (id_artikel, id_pengguna, id_kategori, tanggal, judul, konten, gambar) VALUES (:id_artikel, :id_pengguna, :id_kategori, :tanggal, :judul, :konten, :gambar)";
+        $query = "INSERT INTO ' . $this->table . ' (id_artikel, id_pengguna, id_kategori, tanggal, judul, konten, gambar) VALUES (:id_artikel, :id_pengguna, :id_kategori, :tanggal, :judul, :konten, :gambar)";
         $this->db->query($query);
         $this->db->bind('id_artikel', $id_artikel);
         $this->db->bind('id_pengguna', $_SESSION['id_pengguna']);
@@ -49,13 +49,32 @@ class Artikel_model
         return $this->db->rowCount();
     }
 
+    public function ubahDataArtikel($data, $namaFile)
+    {
+        $query = 'UPDATE ' . $this->table . ' 
+        SET id_kategori = :id_kategori, 
+            judul = :judul, 
+            konten = :konten, 
+            gambar = :gambar 
+        WHERE id_artikel = :id_artikel';
+        $this->db->query($query);
+        $this->db->bind('id_kategori', $data['kategoriArtikel']);
+        $this->db->bind('judul', $data['judulArtikel']);
+        $this->db->bind('gambar', $namaFile);
+        $this->db->bind('konten', $data['kontenArtikel']);
+        $this->db->bind('id_artikel', $data['idArtikel']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function getMaxArtikelId()
     {
         $this->db->query('SELECT MAX(id_artikel) AS max_id FROM ' . $this->table);
         $result = $this->db->single();
         return (int) $result['max_id'];
     }
-    
+
     public function getJumlahKategoriByIdPengguna($id_pengguna)
     {
         $this->db->query('SELECT COUNT(DISTINCT id_kategori) AS jumlah_kategori FROM ' . $this->table . ' WHERE id_pengguna =:id_pengguna');

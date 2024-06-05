@@ -9,6 +9,7 @@ class Artikel extends Controller
         $data['artikel'] = $this->model('Artikel_model')->getAllArtikelByIdPengguna($_SESSION['id_pengguna']);
         $data = $this->formatTanggal($data);
         $data['kategori'] = $this->model('Artikel_model')->getJumlahKategoriByIdPengguna($_SESSION['id_pengguna']);
+        $data['nama_kategori'] = $this->model('Kategori_model')->getAllKategori();
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('artikel/index', $data);
@@ -57,7 +58,26 @@ class Artikel extends Controller
             header('Location: ' . BASEURL . '/artikel/tambahArtikel');
             exit;
         }
-        
+    }
+
+    public function ubahDataArtikel()
+    {
+        $namaFile = $this->uploadFoto();
+        if ($namaFile != false) {
+            if ($this->model('Artikel_model')->ubahDataArtikel($_POST, $namaFile) > 0) {
+                Flasher::setFlash('berhasil', 'diubah', 'success');
+                header('Location: ' . BASEURL . '/artikel');
+                exit;
+            } else {
+                Flasher::setFlash('gagal', 'diubah', 'danger');
+                header('Location: ' . BASEURL . '/artikel');
+                exit;
+            }
+        }else{
+            Flasher::setFlash('gagal', 'diubah karena anda belom memilih foto', 'danger');
+            header('Location: ' . BASEURL . '/artikel');
+            exit;
+        }
     }
 
     public function uploadFoto()
