@@ -68,6 +68,15 @@ class Artikel_model
         return $this->db->rowCount();
     }
 
+    public function hapusDataArtikel($id)
+    {
+        $this->db->query('DELETE FROM ' . $this->table . ' WHERE id_artikel =:id');
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function getMaxArtikelId()
     {
         $this->db->query('SELECT MAX(id_artikel) AS max_id FROM ' . $this->table);

@@ -74,7 +74,7 @@ class Artikel extends Controller
                 exit;
             }
         }else{
-            Flasher::setFlash('gagal', 'diubah karena anda belom memilih foto', 'danger');
+            Flasher::setFlash('gagal', 'diubah karena anda belom memilih gambar', 'danger');
             header('Location: ' . BASEURL . '/artikel');
             exit;
         }
@@ -159,5 +159,37 @@ class Artikel extends Controller
             $artikel['tanggal'] = $formatted_date;
         }
         return $data;
+    }
+
+    public function hapusDataArtikel()
+    {
+        $idArtikel = $_POST['idArtikel'];
+        $artikel = $this->model('Artikel_model')->getArtikelById($idArtikel);
+        $gambarArtikel = $artikel['gambar'];
+
+        // Hapus foto artikel dari folder assets
+        $this->hapusFotoArtikel($gambarArtikel);
+
+        if ($this->model('Artikel_model')->hapusDataArtikel($idArtikel) > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/artikel');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/artikel');
+            exit;
+        }
+    }
+
+    public function hapusFotoArtikel($gambarArtikel)
+    {
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/kanvas-kata/public/assets/images/foto_artikel/";
+        $target_file = $target_dir . $gambarArtikel;
+
+        // Hapus file foto artikel
+        if (file_exists($target_file)) {
+            unlink($target_file);
+            return true;
+        }
     }
 }
