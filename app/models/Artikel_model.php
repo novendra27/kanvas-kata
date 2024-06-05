@@ -23,6 +23,13 @@ class Artikel_model
         return $this->db->single();
     }
 
+    public function getAllArtikelByIdPengguna($id)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_pengguna =:id');
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
+    }
+
     public function tambahDataArtikel($data, $namaFile, $id_kategori)
     {
         $id_artikel = $this->getMaxArtikelId() + 1;
@@ -47,5 +54,12 @@ class Artikel_model
         $this->db->query('SELECT MAX(id_artikel) AS max_id FROM ' . $this->table);
         $result = $this->db->single();
         return (int) $result['max_id'];
+    }
+    
+    public function getJumlahKategoriByIdPengguna($id_pengguna)
+    {
+        $this->db->query('SELECT COUNT(DISTINCT id_kategori) AS jumlah_kategori FROM ' . $this->table . ' WHERE id_pengguna =:id_pengguna');
+        $this->db->bind('id_pengguna', $id_pengguna);
+        return $this->db->single();
     }
 }

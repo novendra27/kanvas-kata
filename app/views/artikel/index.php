@@ -40,7 +40,7 @@
                                                 <i class="mdi mdi-account-circle-outline text-primary h3 me-1"></i>
                                                 Username
                                             </h5>
-                                            <h5 class="text-muted mt-1 mb-0">Penulis</h5>
+                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $_SESSION['nama'] ?></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,13 @@
                                                 <i class="mdi mdi-file-document-edit-outline text-success h3 me-1"></i>
                                                 Total Artikel
                                             </h5>
-                                            <h5 class="text-muted mt-1 mb-0">100 Artikel</h5>
+                                            <?php
+                                            $count = 0;
+                                            foreach ($data['artikel'] as $artikel) {
+                                                $count++;
+                                            }
+                                            ?>
+                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $count ?> Artikel</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +72,7 @@
                                                 <i class="mdi mdi-format-list-text text-info h3 me-1"></i>
                                                 Total Kategori
                                             </h5>
-                                            <h5 class="text-muted mt-1 mb-0">25 Kategori</h5>
+                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $data['kategori']['jumlah_kategori'] ?> Kategori</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -93,23 +99,36 @@
                                                     <th class="col-1">No</th>
                                                     <th class="col-2">Tanggal</th>
                                                     <th class="col-2">Judul</th>
-                                                    <th class="col-3">Isi</th>
+                                                    <th class="col-1">Kategori</th>
+                                                    <th class="col-2">Konten</th>
                                                     <th class="col-2">Gambar</th>
                                                     <th class="col-2">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>18/08/2023 18:43:21 </td>
-                                                    <td>Aplikasi blogger terbaru "Kanvas Kata"</td>
-                                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                                                    <td>Gambar.png</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-outline-success waves-effect waves-light">Edit</button>
-                                                        <button type="button" class="btn btn-outline-danger waves-effect waves-light">Hapus</button>
-                                                    </td>
-                                                </tr>
+                                                <?php
+                                                $count = 0;
+                                                foreach ($data['artikel'] as $artikel) {
+                                                    if ($count >= 10) {
+                                                        break;
+                                                    }
+                                                    $count++;
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $count ?></td>
+                                                        <td><?= $artikel['tanggal'] ?></td>
+                                                        <td><?= $artikel['judul'] ?></td>
+                                                        <td><?= $artikel['id_kategori'] ?></td>
+                                                        <td><?= $artikel['konten'] ?></td>
+                                                        <td><img src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="" style="height: 100px;"></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-outline-success waves-effect waves-light">Edit</button>
+                                                            <button type="button" class="btn btn-outline-danger waves-effect waves-light">Hapus</button>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
 
