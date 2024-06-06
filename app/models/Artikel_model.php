@@ -35,15 +35,18 @@ class Artikel_model
         $id_artikel = $this->getMaxArtikelId() + 1;
         $timestamp = time();
 
-        $query = "INSERT INTO ' . $this->table . ' (id_artikel, id_pengguna, id_kategori, tanggal, judul, konten, gambar) VALUES (:id_artikel, :id_pengguna, :id_kategori, :tanggal, :judul, :konten, :gambar)";
+        $query = 'INSERT INTO ' . $this->table . ' 
+        (id_artikel, id_pengguna, id_kategori, tanggal, judul, konten, gambar) 
+        VALUES 
+        (:id_artikel, :id_pengguna, :id_kategori, :tanggal, :judul, :konten, :gambar)';
         $this->db->query($query);
         $this->db->bind('id_artikel', $id_artikel);
         $this->db->bind('id_pengguna', $_SESSION['id_pengguna']);
         $this->db->bind('id_kategori', $id_kategori);
         $this->db->bind('tanggal', date("Y-m-d H:i:s", $timestamp));
         $this->db->bind('judul', $data['judulArtikel']);
-        $this->db->bind('gambar', $namaFile);
         $this->db->bind('konten', $data['kontenArtikel']);
+        $this->db->bind('gambar', $namaFile);
         $this->db->execute();
 
         return $this->db->rowCount();

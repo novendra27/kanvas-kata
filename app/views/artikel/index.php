@@ -129,7 +129,7 @@
                                                             }
                                                             ?>
                                                         </td>
-                                                        <td><?= $artikel['konten'] ?></td>
+                                                        <td><?= substr($artikel['konten'], 0, 100); ?>...</td>
                                                         <td><img src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="" style="height: 100px;"></td>
                                                         <td>
                                                             <form action="<?= BASEURL ?>/artikel/hapusDataArtikel" method="post">

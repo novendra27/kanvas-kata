@@ -7,11 +7,22 @@ class Home extends Controller
         $data['judul'] = 'Home';
         $data['artikel'] = $this->model('Artikel_model')->getAllArtikel();
         $data = $this->formatTanggal($data);
-        $data['artikelById'] = $this->model('Artikel_model')->getArtikelById('40001');
-        $data = $this->formatTanggalById($data);
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('home/index', $data);
+        $this->view('templates/footer');
+    }
+
+    public function detailArtikel($id_artikel)
+    {
+        $data['judul'] = 'Detail Artikel';
+        $data['id'] = $id_artikel;
+        $data['artikel'] = $this->model('Artikel_model')->getArtikelById($data['id']);
+        $data = $this->formatTanggalById($data);
+        $data['kategori'] = $this->model('Kategori_model')->getKategoriById($data['artikel']['id_kategori']);
+        $this->view('templates/header', $data);
+        $this->view('templates/navbar', $data);
+        $this->view('home/detail_artikel', $data);
         $this->view('templates/footer');
     }
 
@@ -69,7 +80,7 @@ class Home extends Controller
     public function formatTanggalById($data)
     {
         // Misalkan kolom datetime di tabel Anda bernama 'tanggal'
-        $datetime = $data['artikelById']['tanggal'];
+        $datetime = $data['artikel']['tanggal'];
 
         // Array untuk terjemahan hari dan bulan
         $hari_indonesia = [

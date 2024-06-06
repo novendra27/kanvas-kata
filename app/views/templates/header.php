@@ -21,7 +21,7 @@
     <link href="<?= BASEURL ?>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="<?= BASEURL ?>/assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
-E
+    
     <!-- DataTables -->
     <link href="<?= BASEURL ?>/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= BASEURL ?>/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
