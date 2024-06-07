@@ -29,4 +29,10 @@ class Kategori_model
         $this->db->bind('nama', $nama);
         return $this->db->single();
     }
+
+    public function getJumlahKategori()
+    {
+        $this->db->query('SELECT COUNT(id_kategori) AS jumlah_kategori FROM ' . $this->table);
+        return $this->db->single();
+    }
 }

@@ -64,4 +64,10 @@ class Pengguna_model
             return false;
         }
     }
+
+    public function getJumlahUser()
+    {
+        $this->db->query('SELECT COUNT(id_pengguna) AS jumlah_user FROM ' . $this->table);
+        return $this->db->single();
+    }
 }

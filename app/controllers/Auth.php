@@ -38,8 +38,13 @@ class Auth extends Controller
             $_SESSION['id_pengguna'] = $user['id_pengguna'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['peran'] = $user['peran'];
-            header('Location: ' . BASEURL . '/home');
-            exit;
+            if ($user['peran'] == 'Admin') {
+                header('Location: ' . BASEURL . '/admin');
+                exit;
+            }else if ($user['peran'] == 'Penulis') {
+                header('Location: ' . BASEURL . '/artikel');
+                exit;
+            }
         } else {
             Flasher::setFlash('gagal', 'login', 'danger');
             header('Location: ' . BASEURL . '/auth');

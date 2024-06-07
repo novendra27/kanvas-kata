@@ -146,8 +146,6 @@
                     <a class="dropdown-item text-danger" href="<?= BASEURL ?>/auth/logout"><i class="mdi mdi-power font-size-16 align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
-
-
         </div>
     </div>
 </header>
@@ -185,24 +183,33 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                    <a href="<?= BASEURL ?>/admin" class="waves-effect">
                         <i class="mdi mdi-home-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
                         <span>Beranda</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-account-edit-outline mdi-24px"></i>
-                        <span>Penulis</span>
+                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                        <i class="mdi mdi-file-document-edit-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
+                        <span>Artikel</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="<?= BASEURL ?>/artikel">Beranda</a></li>
-                        <li><a href="<?= BASEURL ?>/artikel/tambahArtikel">Tambah Artikel</a></li>
-                    </ul>
+                </li>
+                
+                <li>
+                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                        <i class="mdi mdi-format-list-text mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
+                        <span>Kategori</span>
+                    </a>
                 </li>
 
-
+                
+                <li>
+                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                        <i class="mdi mdi-account-circle-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
+                        <span>User</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

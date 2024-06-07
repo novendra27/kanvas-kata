@@ -93,4 +93,10 @@ class Artikel_model
         $this->db->bind('id_pengguna', $id_pengguna);
         return $this->db->single();
     }
+
+    public function getJumlahArtikel()
+    {
+        $this->db->query('SELECT COUNT(id_artikel) AS jumlah_artikel FROM ' . $this->table);
+        return $this->db->single();
+    }
 }
