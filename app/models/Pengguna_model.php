@@ -10,7 +10,7 @@ class Pengguna_model
         $this->db = new Database;
     }
 
-    public function getALlUser()
+    public function getAllUser()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
@@ -69,5 +69,37 @@ class Pengguna_model
     {
         $this->db->query('SELECT COUNT(id_pengguna) AS jumlah_user FROM ' . $this->table);
         return $this->db->single();
+    }
+
+    public function ubahDataPengguna()
+    {
+        $query = 'UPDATE ' . $this->table . ' SET
+                    nama = :nama,
+                    email = :email,
+                    password = :password,
+                    peran = :peran
+                  WHERE id_pengguna = :id_pengguna';
+
+        $this->db->query($query);
+        $this->db->bind('id_pengguna', $_POST['idPengguna']);
+        $this->db->bind('nama', $_POST['namaPengguna']);
+        $this->db->bind('email', $_POST['emailPengguna']);
+        $this->db->bind('password', $_POST['passwordPengguna']);
+        $this->db->bind('peran', $_POST['peranPengguna']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function hapusDataPengguna($id)
+    {
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id_pengguna = :id_pengguna';
+        $this->db->query($query);
+        $this->db->bind('id_pengguna', $id);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 }

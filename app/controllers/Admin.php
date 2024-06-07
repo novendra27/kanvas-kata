@@ -50,6 +50,17 @@ class Admin extends Controller
         $this->view('admin/templates/footer_admin');
     }
 
+    public function halamanPengguna()
+    {
+        $this->checkLogin();
+        $data['judul'] = 'Admin - Pengguna';
+        $data['pengguna'] = $this->model('Pengguna_model')->getAllUser();
+        $this->view('admin/templates/header_admin', $data);
+        $this->view('admin/templates/navbar_admin', $data);
+        $this->view('admin/pengguna', $data);
+        $this->view('admin/templates/footer_admin');
+    }
+
     public function checkLogin()
     {
         if ($_SESSION['peran'] !== 'Admin') {
@@ -138,6 +149,33 @@ class Admin extends Controller
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/admin/halamanKategori');
+            exit;
+        }
+    }
+
+    public function ubahDataPengguna()
+    {
+        if ($this->model('Pengguna_model')->ubahDataPengguna($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'diubah', 'success');
+            header('Location: ' . BASEURL . '/admin/halamanPengguna');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'diubah', 'danger');
+            header('Location: ' . BASEURL . '/admin/halamanPengguna');
+            exit;
+        }
+    }
+
+    public function hapusDataPengguna()
+    {
+        $idPengguna = $_POST['idPengguna'];
+        if ($this->model('Pengguna_model')->hapusDataPengguna($idPengguna) > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/admin/halamanPengguna');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/admin/halamanPengguna');
             exit;
         }
     }

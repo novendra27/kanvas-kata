@@ -209,9 +209,9 @@
 
                 
                 <li>
-                    <a href="<?= BASEURL ?>/admin/halamanPelanggan" class="waves-effect">
+                    <a href="<?= BASEURL ?>/admin/halamanPengguna" class="waves-effect">
                         <i class="mdi mdi-account-circle-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
-                        <span>Pelanggan</span>
+                        <span>Pengguna</span>
                     </a>
                 </li>
             </ul>
