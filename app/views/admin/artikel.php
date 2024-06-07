@@ -16,7 +16,7 @@
                                     <h4>KANVAS KATA</h4>
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Kanvas Kata</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Halaman Penulis</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Halaman Admin</a></li>
                                         <li class="breadcrumb-item active">Beranda</li>
                                     </ol>
                                 </div>
@@ -30,54 +30,6 @@
                 <div class="container-fluid">
                     <div class="page-content-wrapper">
 
-
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-12">
-                                <div class="card border-5 rounded-3">
-                                    <div class="card-body">
-                                        <div class="">
-                                            <h5>
-                                                <i class="mdi mdi-account-circle-outline text-primary h3 me-1"></i>
-                                                Username
-                                            </h5>
-                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $_SESSION['nama'] ?></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-                                <div class="card border-5 rounded-3">
-                                    <div class="card-body">
-                                        <div class="">
-                                            <h5>
-                                                <i class="mdi mdi-file-document-edit-outline text-success h3 me-1"></i>
-                                                Total Artikel
-                                            </h5>
-                                            <?php
-                                            $count = 0;
-                                            foreach ($data['artikel'] as $artikel) {
-                                                $count++;
-                                            }
-                                            ?>
-                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $count ?> Artikel</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-                                <div class="card border-5 rounded-3">
-                                    <div class="card-body">
-                                        <div class="">
-                                            <h5>
-                                                <i class="mdi mdi-format-list-text text-info h3 me-1"></i>
-                                                Total Kategori
-                                            </h5>
-                                            <h5 class="text-muted mt-1 mb-0 ms-1"><?= $data['kategori']['jumlah_kategori'] ?> Kategori</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="card border-5 rounded-3">
@@ -132,7 +84,7 @@
                                                         <td><?= substr($artikel['konten'], 0, 100); ?>...</td>
                                                         <td><img src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="" style="height: 100px;"></td>
                                                         <td>
-                                                            <form action="<?= BASEURL ?>/admin" method="post">
+                                                            <form action="<?= BASEURL ?>/admin/hapusDataArtikel" method="post">
                                                             <button type="button" class="btn btn-outline-success waves-effect waves-light btn-edit me-2" data-bs-toggle="modal" data-bs-target="#modal" data-id="<?= $artikel['id_artikel'] ?>" data-judul="<?= $artikel['judul'] ?>" data-kategori="<?= $artikel['id_kategori'] ?>" data-konten="<?= $artikel['konten'] ?>" data-gambar="<?= $artikel['gambar'] ?>">
                                                                 Edit</button>
                                                                 <input type="hidden" name="idArtikel" value="<?= $artikel['id_artikel'] ?>">
@@ -160,7 +112,7 @@
             <!-- End Page-content -->
 
             <!-- Modal -->
-            <form class="needs-validation" novalidate action="<?= BASEURL ?>/artikel/ubahDataArtikel" method="post" enctype="multipart/form-data">
+            <form class="needs-validation" novalidate action="<?= BASEURL ?>/admin/ubahDataArtikel" method="post" enctype="multipart/form-data">
                 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

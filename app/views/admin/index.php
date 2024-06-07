@@ -16,7 +16,7 @@
                                     <h4>KANVAS KATA</h4>
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Kanvas Kata</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Halaman Penulis</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Halaman Admin</a></li>
                                         <li class="breadcrumb-item active">Beranda</li>
                                     </ol>
                                 </div>

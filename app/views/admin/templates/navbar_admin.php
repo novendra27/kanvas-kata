@@ -190,14 +190,14 @@
                 </li>
 
                 <li>
-                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                    <a href="<?= BASEURL ?>/admin/halamanArtikel" class="waves-effect">
                         <i class="mdi mdi-file-document-edit-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
                         <span>Artikel</span>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                    <a href="<?= BASEURL ?>/admin/halamanKategori" class="waves-effect">
                         <i class="mdi mdi-format-list-text mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
                         <span>Kategori</span>
                     </a>
@@ -205,9 +205,9 @@
 
                 
                 <li>
-                    <a href="<?= BASEURL ?>/home" class="waves-effect">
+                    <a href="<?= BASEURL ?>/admin/halamanPelanggan" class="waves-effect">
                         <i class="mdi mdi-account-circle-outline mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
-                        <span>User</span>
+                        <span>Pelanggan</span>
                     </a>
                 </li>
             </ul>
