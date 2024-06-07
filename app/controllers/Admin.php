@@ -28,6 +28,27 @@ class Admin extends Controller
         $this->view('admin/templates/footer_admin');
     }
 
+    public function halamanKategori()
+    {
+        $this->checkLogin();
+        $data['judul'] = 'Admin - Kategori';
+        $data['kategori'] = $this->model('Kategori_model')->getAllKategori();
+        $this->view('admin/templates/header_admin', $data);
+        $this->view('admin/templates/navbar_admin', $data);
+        $this->view('admin/kategori', $data);
+        $this->view('admin/templates/footer_admin');
+    }
+
+    public function halamanTambahKategori()
+    {
+        $this->checkLogin();
+        $data['judul'] = 'Admin - Kategori';
+        $data['kategori'] = $this->model('Kategori_model')->getAllKategori();
+        $this->view('admin/templates/header_admin', $data);
+        $this->view('admin/templates/navbar_admin', $data);
+        $this->view('admin/tambah_kategori', $data);
+        $this->view('admin/templates/footer_admin');
+    }
 
     public function checkLogin()
     {
@@ -54,7 +75,7 @@ class Admin extends Controller
                 header('Location: ' . BASEURL . '/admin/halamanArtikel');
                 exit;
             }
-        }else{
+        } else {
             Flasher::setFlash('gagal', 'diubah karena anda belom memilih gambar', 'danger');
             header('Location: ' . BASEURL . '/admin/halamanArtikel');
             exit;
@@ -77,6 +98,46 @@ class Admin extends Controller
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/admin/halamanArtikel');
+            exit;
+        }
+    }
+
+    public function tambahDataKategori()
+    {
+        if ($this->model('Kategori_model')->tambahDataKategori($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . '/admin/halamanTambahKategori');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location: ' . BASEURL . '/admin/halamanTambahKategori');
+            exit;
+        }
+    }
+
+    public function ubahDataKategori()
+    {
+        if ($this->model('Kategori_model')->ubahDataKategori($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'diubah', 'success');
+            header('Location: ' . BASEURL . '/admin/halamanKategori');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'diubah', 'danger');
+            header('Location: ' . BASEURL . '/admin/halamanKategori');
+            exit;
+        }
+    }
+
+    public function hapusDataKategori()
+    {
+        $idKategori = $_POST['idKategori'];
+        if ($this->model('Kategori_model')->hapusDataKategori($idKategori) > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/admin/halamanKategori');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/admin/halamanKategori');
             exit;
         }
     }

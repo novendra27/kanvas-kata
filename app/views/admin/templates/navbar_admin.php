@@ -197,10 +197,14 @@
                 </li>
                 
                 <li>
-                    <a href="<?= BASEURL ?>/admin/halamanKategori" class="waves-effect">
-                        <i class="mdi mdi-format-list-text mdi-24px"></i><span class="badge rounded-pill bg-info float-end">3</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-format-list-text mdi-24px"></i>
                         <span>Kategori</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?= BASEURL ?>/admin/halamanKategori">Kategori</a></li>
+                        <li><a href="<?= BASEURL ?>/admin/halamanTambahKategori">Tambah Kategori</a></li>
+                    </ul>
                 </li>
 
                 
