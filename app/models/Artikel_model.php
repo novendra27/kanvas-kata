@@ -30,6 +30,13 @@ class Artikel_model
         return $this->db->resultSet();
     }
 
+    public function getAllArtikelByKategori($id)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_kategori =:id');
+        $this->db->bind('id', $id);
+        return $this->db->resultSet();
+    }
+
     public function tambahDataArtikel($data, $namaFile, $id_kategori)
     {
         $id_artikel = $this->getMaxArtikelId() + 1;

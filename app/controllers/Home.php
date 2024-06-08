@@ -20,10 +20,26 @@ class Home extends Controller
         $data['id'] = $id_artikel;
         $data['artikel'] = $this->model('Artikel_model')->getArtikelById($data['id']);
         $data = $this->formatTanggalById($data);
-        $data['kategori'] = $this->model('Kategori_model')->getKategoriById($data['artikel']['id_kategori']);
+        $data['kategori'] = $this->model('Kategori_model')->getAllKategori();
+        $data['kategori_artikel'] = $this->model('Kategori_model')->getKategoriById($data['artikel']['id_kategori']);
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('home/detail_artikel', $data);
+        $this->view('templates/footer');
+    }
+
+    
+    public function artikelByKategori($id_kategori)
+    {
+        $data['judul'] = 'Kategori Artikel';
+        $data['id_kategori'] = $id_kategori;
+        $data['artikel'] = $this->model('Artikel_model')->getAllArtikelByKategori($data['id_kategori']);
+        $data = $this->formatTanggal($data);
+        $data['kategori'] = $this->model('Kategori_model')->getAllKategori();
+        $data['nama_kategori'] = $this->model('Kategori_model')->getKategoriById($data['id_kategori']);
+        $this->view('templates/header', $data);
+        $this->view('templates/navbar', $data);
+        $this->view('home/kategori_artikel', $data);
         $this->view('templates/footer');
     }
 

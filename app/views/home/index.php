@@ -83,7 +83,7 @@
                                             break;
                                         }
                                     }
-                                    if ($count != 0 && $count % 2 != 1) {
+                                    if ($count >= 1 && $count % 2 != 1) {
                                         echo '</div>';
                                     }
                                     ?>
@@ -103,31 +103,40 @@
                                 </div>
                                 <!-- Side widgets-->
                                 <div class="col-lg-4">
+                                    <div class="card rounded-3 mb-4">
+                                        <div class="h6 card-header rounded-top">Kutipan Positif</div>
+                                        <div class="card-body">
+                                            ”Jika kamu tidak sanggup menahan lelahnya belajar maka kamu harus sanggup menahan perihnya kebodohan”
+                                            <br>
+                                            <div class="mt-2 text-muted">- Imam Syafi’i</div>
+                                        </div>
+                                        
+                                    </div>
                                     <!-- Categories widget-->
                                     <div class="card rounded-3 mb-4">
                                         <div class="h6 card-header rounded-top">Daftar Kategori</div>
                                         <div class="card-body">
                                             <div class="row">
-                                            <?php
-                                            $count = 0;
-                                            foreach ($data['kategori'] as $kategori) {
-                                                if ($count == 6) {
-                                                    break;
+                                                <?php
+                                                $count = 0;
+                                                foreach ($data['kategori'] as $kategori) {
+                                                    if ($count == 6) {
+                                                        break;
+                                                    }
+                                                    if ($count == 0 or $count == 3) {
+                                                        echo '<div class="col-sm-6">';
+                                                        echo '<ul class="list-unstyled mb-0">';
+                                                    }
+                                                ?>
+                                                    <li class="mb-2"><a href="<?= BASEURL ?>/home/artikelByKategori/<?= $kategori['id_kategori']; ?>"><?= $kategori['nama_kategori'] ?></a></li>
+                                                <?php
+                                                    if ($count == 2 || $count == 5) {
+                                                        echo '</ul>';
+                                                        echo '</div>';
+                                                    }
+                                                    $count++;
                                                 }
-                                                if ($count == 0 or $count == 3) {
-                                                    echo '<div class="col-sm-6">';
-                                                    echo '<ul class="list-unstyled mb-0">';
-                                                }
-                                            ?>
-                                                <li class="mb-2"><a href="#!"><?= $kategori['nama_kategori'] ?></a></li>
-                                            <?php
-                                                if ($count == 2 || $count == 5) {
-                                                    echo '</ul>';
-                                                    echo '</div>';
-                                                }
-                                                $count++;
-                                            }
-                                            ?>
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

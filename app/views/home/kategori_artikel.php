@@ -17,7 +17,7 @@
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Kanvas Kata</a></li>
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Beranda</a></li>
-                                        <li class="breadcrumb-item active">Detail Artikel</li>
+                                        <li class="breadcrumb-item active">Artikel <?= $data['nama_kategori']['nama_kategori'] ?></li>
                                     </ol>
                                 </div>
                             </div>
@@ -31,32 +31,59 @@
 
                     <div class="page-content-wrapper">
 
-                        <!-- Page content-->
-                        <div class="container mt-5">
+
+                        <div class="container">
                             <div class="row">
+                                <!-- Blog entries-->
                                 <div class="col-lg-8">
-                                    <!-- Post content-->
-                                    <div class="card rounded-3">
-                                        <div class="card-body">
-                                            <article>
-                                                <!-- Post header-->
-                                                <header class="mb-4">
-                                                    <!-- Post title-->
-                                                    <h1 class="fw-bolder mb-1"><?= $data['artikel']['judul'] ?></h1>
-                                                    <!-- Post meta content-->
-                                                    <div class="text-muted fst-italic mb-2">Diupload pada: <?= $data['artikel']['tanggal'] ?></div>
-                                                    <!-- Post categories-->
-                                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"><?= $data['kategori_artikel']['nama_kategori'] ?></a>
-                                                </header>
-                                                <!-- Preview image figure-->
-                                                <figure class="mb-4"><img class="img-fluid rounded" src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $data['artikel']['gambar'] ?>" alt="..." /></figure>
-                                                <!-- Post content-->
-                                                <section class="mb-5">
-                                                    <p class="fs-5 mb-4"><?= $data['artikel']['konten'] ?></p>
-                                                </section>
-                                            </article>
+                                    <!-- Featured blog post-->
+                                    <?php
+                                    $count = 0;
+                                    foreach ($data['artikel'] as $artikel) {
+                                        if ($count % 2 == 0) {
+                                            echo '<div class="row">';
+                                        }
+                                    ?>
+                                        <div class="col-lg-6">
+                                            <!-- Blog post-->
+                                            <div class="card mb-4 rounded-3">
+                                                <img class="card-img-top px-3 pt-3 rounded-3" src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="..." style="height: 180px;" />
+                                                <div class="card-body">
+                                                    <h2 class="card-title h4"><?= $artikel['judul']; ?></h2>
+                                                    <div class="small text-muted fst-italic">Diupload pada: <?= $artikel['tanggal']; ?></div>
+                                                    <p class="card-text"><?= substr($artikel['konten'], 0, 300); ?>...</p>
+                                                    <form action="<?= BASEURL ?>/home/detailArtikel/<?= $artikel['id_artikel']; ?>">
+                                                        <button class="btn btn-primary" type="submit">Baca selengkapnya →</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php
+                                        if ($count != 0 && $count % 2 == 1) {
+                                            echo '</div>';
+                                        }
+                                        $count++;
+                                        if ($count != 0 && $count == 9) {
+                                            break;
+                                        }
+                                    }
+                                    if ($count >= 1 && $count % 2 == 1) {
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                    <!-- Pagination-->
+                                    <!-- <nav aria-label="Pagination">
+                                        <hr class="my-0" />
+                                        <ul class="pagination justify-content-center my-4">
+                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                                        </ul>
+                                    </nav> -->
                                 </div>
                                 <!-- Side widgets-->
                                 <div class="col-lg-4">
