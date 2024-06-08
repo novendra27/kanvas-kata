@@ -61,9 +61,6 @@
                                                 <?php
                                                 $count = 0;
                                                 foreach ($data['pengguna'] as $pengguna) {
-                                                    if ($count >= 10) {
-                                                        break;
-                                                    }
                                                     $count++;
                                                 ?>
                                                     <tr>

@@ -110,9 +110,6 @@
                                                 <?php
                                                 $count = 0;
                                                 foreach ($data['artikel'] as $artikel) {
-                                                    if ($count >= 10) {
-                                                        break;
-                                                    }
                                                     $count++;
                                                 ?>
                                                     <tr>

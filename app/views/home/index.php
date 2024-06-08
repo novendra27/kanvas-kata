@@ -62,10 +62,10 @@
                                             <div class="col-lg-6">
                                                 <!-- Blog post-->
                                                 <div class="card mb-4 rounded-3">
-                                                    <img class="card-img-top px-3 pt-3 rounded-3" src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="..." />
+                                                    <img class="card-img-top px-3 pt-3 rounded-3" src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="..." style="height: 180px;" />
                                                     <div class="card-body">
                                                         <h2 class="card-title h4"><?= $artikel['judul']; ?></h2>
-                                                        <div class="small text-muted fst-italic mb-1">Diupload pada: <?= $artikel['tanggal']; ?></div>
+                                                        <div class="small text-muted fst-italic">Diupload pada: <?= $artikel['tanggal']; ?></div>
                                                         <p class="card-text"><?= substr($artikel['konten'], 0, 300); ?>...</p>
                                                         <form action="<?= BASEURL ?>/home/detailArtikel/<?= $artikel['id_artikel']; ?>">
                                                             <button class="btn btn-primary" type="submit">Baca selengkapnya →</button>
@@ -79,7 +79,7 @@
                                             echo '</div>';
                                         }
                                         $count++;
-                                        if ($count != 0 && $count == 6) {
+                                        if ($count != 0 && $count == 7) {
                                             break;
                                         }
                                     }
@@ -103,42 +103,40 @@
                                 </div>
                                 <!-- Side widgets-->
                                 <div class="col-lg-4">
-                                    <!-- Search widget-->
-                                    <div class="card rounded-3 mb-4">
-                                        <div class="card-header rounded-top">Search</div>
-                                        <div class="card-body">
-                                            <div class="input-group">
-                                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- Categories widget-->
                                     <div class="card rounded-3 mb-4">
-                                        <div class="card-header rounded-top">Categories</div>
+                                        <div class="h6 card-header rounded-top">Daftar Kategori</div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-sm-6">
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li><a href="#!">Web Design</a></li>
-                                                        <li><a href="#!">HTML</a></li>
-                                                        <li><a href="#!">Freebies</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li><a href="#!">JavaScript</a></li>
-                                                        <li><a href="#!">CSS</a></li>
-                                                        <li><a href="#!">Tutorials</a></li>
-                                                    </ul>
-                                                </div>
+                                            <?php
+                                            $count = 0;
+                                            foreach ($data['kategori'] as $kategori) {
+                                                if ($count == 6) {
+                                                    break;
+                                                }
+                                                if ($count == 0 or $count == 3) {
+                                                    echo '<div class="col-sm-6">';
+                                                    echo '<ul class="list-unstyled mb-0">';
+                                                }
+                                            ?>
+                                                <li class="mb-2"><a href="#!"><?= $kategori['nama_kategori'] ?></a></li>
+                                            <?php
+                                                if ($count == 2 || $count == 5) {
+                                                    echo '</ul>';
+                                                    echo '</div>';
+                                                }
+                                                $count++;
+                                            }
+                                            ?>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Side widget-->
                                     <div class="card rounded-3 mb-4">
-                                        <div class="card-header rounded-top">Side Widget</div>
-                                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                                        <div class="h6 card-header rounded-top">Tentang Kami</div>
+                                        <div class="card-body">
+                                            Kanvas Kata adalah platform blogging yang memungkinkan pengguna untuk mengekspresikan kreativitas mereka melalui tulisan. Dengan antarmuka yang ramah pengguna, pengguna dapat dengan mudah membuat, mengedit, dan membagikan artikel mereka sendiri dengan audiens yang luas. Dengan Kanvas Kata, setiap orang memiliki kesempatan untuk membangun komunitas dan memperluas jangkauan ide-ide mereka.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

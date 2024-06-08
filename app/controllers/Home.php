@@ -7,6 +7,7 @@ class Home extends Controller
         $data['judul'] = 'Home';
         $data['artikel'] = $this->model('Artikel_model')->getAllArtikel();
         $data = $this->formatTanggal($data);
+        $data['kategori'] = $this->model('Kategori_model')->getAllKategori();
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('home/index', $data);

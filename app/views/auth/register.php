@@ -4,7 +4,7 @@
 
             <div class="container">
 
-                <div class="home-btn"><a href="/" class="text-white router-link-active"><i class="fas fa-home h2"></i></a></div>
+                <div class="home-btn"><a href="<?= BASEURL ?>/home" class="text-white router-link-active"><i class="fas fa-home h2"></i></a></div>
 
                 <?php Flasher::flash(); ?>
                 <div class="row justify-content-center">
