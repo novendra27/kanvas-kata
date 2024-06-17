@@ -129,7 +129,7 @@
                                                         <td><?= substr($artikel['konten'], 0, 100); ?>...</td>
                                                         <td><img src="<?= BASEURL ?>/assets/images/foto_artikel/<?= $artikel['gambar'] ?>" alt="" style="height: 100px;"></td>
                                                         <td>
-                                                            <form action="<?= BASEURL ?>/admin" method="post">
+                                                            <form action="<?= BASEURL ?>/artikel/hapusDataArtikel" method="post">
                                                             <button type="button" class="btn btn-outline-success waves-effect waves-light btn-edit me-2" data-bs-toggle="modal" data-bs-target="#modal" data-id="<?= $artikel['id_artikel'] ?>" data-judul="<?= $artikel['judul'] ?>" data-kategori="<?= $artikel['id_kategori'] ?>" data-konten="<?= $artikel['konten'] ?>" data-gambar="<?= $artikel['gambar'] ?>">
                                                                 Edit</button>
                                                                 <input type="hidden" name="idArtikel" value="<?= $artikel['id_artikel'] ?>">

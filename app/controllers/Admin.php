@@ -63,38 +63,51 @@ class Admin extends Controller
 
     public function checkLogin()
     {
-        if ($_SESSION['peran'] !== 'Admin') {
+        if (isset($_SESSION['peran'])) {
+            if ($_SESSION['peran'] !== 'Admin') {
+                Flasher::setFlash('bukan', 'admin', 'danger');
+                header('Location: ' . BASEURL . '/auth');
+                exit;
+            } else {
+                return true;
+                // exit;
+            }
+        }else{
             Flasher::setFlash('bukan', 'admin', 'danger');
             header('Location: ' . BASEURL . '/auth');
-            exit;
-        } else {
-            return true;
             exit;
         }
     }
 
     public function ubahDataArtikel()
     {
+	    // Mulai output buffering
+        ob_start();
+        
         $namaFile = $this->uploadFoto();
         if ($namaFile != false) {
             if ($this->model('Artikel_model')->ubahDataArtikel($_POST, $namaFile) > 0) {
                 Flasher::setFlash('berhasil', 'diubah', 'success');
-                header('Location: ' . BASEURL . '/admin/halamanArtikel');
-                exit;
             } else {
                 Flasher::setFlash('gagal', 'diubah', 'danger');
-                header('Location: ' . BASEURL . '/admin/halamanArtikel');
-                exit;
             }
         } else {
             Flasher::setFlash('gagal', 'diubah karena anda belom memilih gambar', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanArtikel');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanArtikel');
+        exit;
     }
 
     public function hapusDataArtikel()
     {
+	    // Mulai output buffering
+        ob_start();
+        
         $idArtikel = $_POST['idArtikel'];
         $artikel = $this->model('Artikel_model')->getArtikelById($idArtikel);
         $gambarArtikel = $artikel['gambar'];
@@ -104,80 +117,114 @@ class Admin extends Controller
 
         if ($this->model('Artikel_model')->hapusDataArtikel($idArtikel) > 0) {
             Flasher::setFlash('berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanArtikel');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanArtikel');
-            exit;
         }
+        
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanArtikel');
+        exit;
     }
 
     public function tambahDataKategori()
     {
+    	// Mulai output buffering
+        ob_start();
+        
         if ($this->model('Kategori_model')->tambahDataKategori($_POST) > 0) {
             Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanTambahKategori');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanTambahKategori');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanTambahKategori');
+        exit;
     }
 
     public function ubahDataKategori()
     {
+    	// Mulai output buffering
+        ob_start();
+        
         if ($this->model('Kategori_model')->ubahDataKategori($_POST) > 0) {
             Flasher::setFlash('berhasil', 'diubah', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanKategori');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'diubah', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanKategori');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanKategori');
+        exit;
     }
 
     public function hapusDataKategori()
     {
+	    // Mulai output buffering
+        ob_start();
+        
         $idKategori = $_POST['idKategori'];
         if ($this->model('Kategori_model')->hapusDataKategori($idKategori) > 0) {
             Flasher::setFlash('berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanKategori');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanKategori');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanKategori');
+        exit;
     }
 
     public function ubahDataPengguna()
     {
+	    // Mulai output buffering
+        ob_start();
+        
         if ($this->model('Pengguna_model')->ubahDataPengguna($_POST) > 0) {
             Flasher::setFlash('berhasil', 'diubah', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanPengguna');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'diubah', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanPengguna');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanPengguna');
+        exit;
     }
 
     public function hapusDataPengguna()
     {
+	    // Mulai output buffering
+        ob_start();
+        
         $idPengguna = $_POST['idPengguna'];
         if ($this->model('Pengguna_model')->hapusDataPengguna($idPengguna) > 0) {
             Flasher::setFlash('berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/admin/halamanPengguna');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/admin/halamanPengguna');
-            exit;
         }
+        
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/admin/halamanPengguna');
+        exit;
     }
 
     public function formatTanggal($data)
@@ -233,7 +280,7 @@ class Admin extends Controller
 
     public function uploadFoto()
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/kanvas-kata/public/assets/images/foto_artikel/";
+        $target_dir = __DIR__ . "/../../public/assets/images/foto_artikel/";
         $imageFileType = strtolower(pathinfo($_FILES["gambarArtikel"]["name"], PATHINFO_EXTENSION));
 
         // Generate a unique name for the file
@@ -263,7 +310,7 @@ class Admin extends Controller
 
     public function hapusFotoArtikel($gambarArtikel)
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/kanvas-kata/public/assets/images/foto_artikel/";
+        $target_dir = __DIR__ . "/../../kanvas-kata/public/assets/images/foto_artikel/";
         $target_file = $target_dir . $gambarArtikel;
 
         // Hapus file foto artikel

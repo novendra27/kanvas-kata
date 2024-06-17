@@ -29,60 +29,75 @@ class Artikel extends Controller
 
     public function checkLogin()
     {
-        if ($_SESSION['peran'] !== 'Penulis') {
+        if (isset($_SESSION['peran'])) {
+            if ($_SESSION['peran'] !== 'Penulis') {
+                Flasher::setFlash('bukan', 'penulis', 'danger');
+                header('Location: ' . BASEURL . '/auth');
+                exit;
+            } else {
+                return true;
+                // exit;
+            }
+        }else{
             Flasher::setFlash('bukan', 'penulis', 'danger');
             header('Location: ' . BASEURL . '/auth');
             exit;
-        } else {
-            return true;
-            exit;
         }
+        // exit;
     }
-
+    
     public function tambahDataArtikel()
     {
+        // Mulai output buffering
+        ob_start();
+    
         $namaFile = $this->uploadFoto();
         $id_kategori = $this->model('Kategori_model')->getKategoriByNama($_POST['kategoriArtikel']);
         if ($namaFile != false) {
             if ($this->model('Artikel_model')->tambahDataArtikel($_POST, $namaFile, $id_kategori['id_kategori']) > 0) {
                 Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                header('Location: ' . BASEURL . '/artikel/tambahArtikel');
-                exit;
             } else {
                 Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-                header('Location: ' . BASEURL . '/artikel/tambahArtikel');
-                exit;
             }
-        }else{
+        } else {
             Flasher::setFlash('gagal', 'ditambahkan', 'danger');
-            header('Location: ' . BASEURL . '/artikel/tambahArtikel');
-            exit;
         }
+    
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/artikel/tambahArtikel');
+        exit;
     }
 
     public function ubahDataArtikel()
     {
+        // Mulai output buffering
+        ob_start();
+        
         $namaFile = $this->uploadFoto();
         if ($namaFile != false) {
             if ($this->model('Artikel_model')->ubahDataArtikel($_POST, $namaFile) > 0) {
                 Flasher::setFlash('berhasil', 'diubah', 'success');
-                header('Location: ' . BASEURL . '/artikel');
-                exit;
             } else {
                 Flasher::setFlash('gagal', 'diubah', 'danger');
-                header('Location: ' . BASEURL . '/artikel');
-                exit;
             }
         }else{
             Flasher::setFlash('gagal', 'diubah karena anda belom memilih gambar', 'danger');
-            header('Location: ' . BASEURL . '/artikel');
-            exit;
         }
+    
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/artikel');
+        exit;
     }
 
     public function uploadFoto()
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/kanvas-kata/public/assets/images/foto_artikel/";
+        $target_dir = __DIR__ . "/../../public/assets/images/foto_artikel/";
         $imageFileType = strtolower(pathinfo($_FILES["gambarArtikel"]["name"], PATHINFO_EXTENSION));
 
         // Generate a unique name for the file
@@ -106,7 +121,7 @@ class Artikel extends Controller
             return $namaFile;
         } else {
             echo "Sorry, there was an error uploading your file.";
-            return false;
+            // return false;
         }
     }
 
@@ -163,6 +178,9 @@ class Artikel extends Controller
 
     public function hapusDataArtikel()
     {
+        // Mulai output buffering
+        ob_start();
+        
         $idArtikel = $_POST['idArtikel'];
         $artikel = $this->model('Artikel_model')->getArtikelById($idArtikel);
         $gambarArtikel = $artikel['gambar'];
@@ -172,18 +190,21 @@ class Artikel extends Controller
 
         if ($this->model('Artikel_model')->hapusDataArtikel($idArtikel) > 0) {
             Flasher::setFlash('berhasil', 'dihapus', 'success');
-            header('Location: ' . BASEURL . '/artikel');
-            exit;
         } else {
             Flasher::setFlash('gagal', 'dihapus', 'danger');
-            header('Location: ' . BASEURL . '/artikel');
-            exit;
         }
+    
+        // Akhir output buffering
+        ob_end_clean();
+    
+        // Redirect setelah output buffering dihentikan
+        header('Location: ' . BASEURL . '/artikel');
+        exit;
     }
 
     public function hapusFotoArtikel($gambarArtikel)
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/kanvas-kata/public/assets/images/foto_artikel/";
+        $target_dir = __DIR__ . "/../..kanvas-kata/public/assets/images/foto_artikel/";
         $target_file = $target_dir . $gambarArtikel;
 
         // Hapus file foto artikel
