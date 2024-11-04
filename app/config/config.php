@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'https://kanvas-kata.rawp.info/public');
+define('BASEURL', 'http://localhost/kanvas-kata/public');
 
 //DB
 define('DB_HOST', 'localhost');
