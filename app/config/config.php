@@ -1,11 +1,9 @@
 <?php
 
-define('BASEURL', 'http://localhost/kanvas-kata/public');
+define('BASEURL', 'http://localhost:8088/');
 
-//DB
-define('DB_HOST', 'localhost');
+// DB
+define('DB_HOST', 'mysql_db');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'rootpassword');
 define('DB_NAME', 'db_kanvas_kata');
-
-// Untuk Konfigurasi Database saya hide untuk menjaga keamanan Aplikasi & Hosting saya

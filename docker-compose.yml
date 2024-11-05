@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    ports:
+      - "8088:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=kanvas_kata
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=rootpassword
+
+  db:
+    image: mysql:8.0.30
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_kanvas_kata
+      MYSQL_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/db_kanvas_kata.sql:/docker-entrypoint-initdb.d/db_kanvas_kata.sql
+    ports:
+      - "3308:3306"
+
+volumes:
+  db_data:

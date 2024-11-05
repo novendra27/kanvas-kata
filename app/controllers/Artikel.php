@@ -60,7 +60,7 @@ class Artikel extends Controller
                 Flasher::setFlash('gagal', 'ditambahkan', 'danger');
             }
         } else {
-            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            Flasher::setFlash('gagal', 'diubah karena anda belom memilih gambar', 'danger');
         }
     
         // Akhir output buffering
@@ -97,7 +97,7 @@ class Artikel extends Controller
 
     public function uploadFoto()
     {
-        $target_dir = __DIR__ . "/../../public/assets/images/foto_artikel/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/images/foto_artikel/";
         $imageFileType = strtolower(pathinfo($_FILES["gambarArtikel"]["name"], PATHINFO_EXTENSION));
 
         // Generate a unique name for the file
